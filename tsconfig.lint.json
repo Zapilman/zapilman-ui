@@ -1,0 +1,27 @@
+{
+  "include": ["src/**/*", "custom.d.ts"],
+  "exclude": ["node_modules", "./dist/", "tsconfig.json"],
+  "compilerOptions": {
+    "outDir": "./dist/",
+    "sourceMap": true,
+    "noImplicitAny": true,
+    "module": "esnext",
+    "target": "es5",
+    "allowJs": true,
+    "moduleResolution": "node",
+    "removeComments": true,
+    "allowSyntheticDefaultImports": true,
+    "jsx": "react-jsx",
+    "baseUrl": ".",
+    "declaration": true,
+    "skipLibCheck": true,
+    "paths": {
+      "_components/*": ["./src/components/*"],
+      "_modules/*": ["./src/modules/*"],
+      "_UI/*": ["./src/UI/*"],
+      "_store/*": ["./src/store/*"],
+      "_styles/*": ["./src/styles/*"]
+      // "_hooks/*": ["./src/hooks/*"]
+    }
+  }
+}
