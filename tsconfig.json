@@ -1,6 +1,6 @@
 {
-  "include": ["src/**/*", "custom.d.ts"],
-  "exclude": ["node_modules", "./dist/"],
+  "include": ["./packages/**/*", "custom.d.ts"],
+  "exclude": ["node_modules", "./packages/zdorov-ui/dist/"],
   "compilerOptions": {
     "outDir": "./dist/",
     "sourceMap": true,
@@ -13,14 +13,6 @@
     "allowSyntheticDefaultImports": true,
     "jsx": "react-jsx",
     "baseUrl": ".",
-    "declaration": true,
-    "paths": {
-      "_components/*": ["./src/components/*"],
-      "_modules/*": ["./src/modules/*"],
-      "_UI/*": ["./src/UI/*"],
-      "_store/*": ["./src/store/*"],
-      "_styles/*": ["./src/styles/*"]
-      // "_hooks/*": ["./src/hooks/*"]
-    }
+    "declaration": true
   }
 }
