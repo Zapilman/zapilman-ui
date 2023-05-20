@@ -1,5 +1,5 @@
 const Input = () => {
-  return <div>zalupa</div>;
+  return <div>input zalupa</div>;
 };
 
 export default Input;
