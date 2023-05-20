@@ -1,6 +1,6 @@
 {
   "include": ["./packages/**/*", "custom.d.ts"],
-  "exclude": ["node_modules", "./packages/zdorov-ui/dist/"],
+  "exclude": ["node_modules", "./dist/"],
   "compilerOptions": {
     "outDir": "./dist/",
     "sourceMap": true,

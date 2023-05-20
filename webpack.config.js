@@ -5,7 +5,7 @@ module.exports = {
   entry: './packages/zdorov-ui/src/index.ts',
   output: {
     filename: 'index.js',
-    path: path.resolve(__dirname, './packages/zdorov-ui/dist'),
+    path: path.resolve(__dirname, 'dist'),
     libraryTarget: 'umd',
     clean: true,
   },
