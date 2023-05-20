@@ -1,8 +1,8 @@
 {
   "include": ["./packages/**/*", "custom.d.ts"],
-  "exclude": ["node_modules", "./dist/"],
+  "exclude": ["node_modules", "./packages/zdorov-ui/dist"],
   "compilerOptions": {
-    "outDir": "./dist/",
+    "outDir": "./packages/zdorov-ui/dist",
     "sourceMap": true,
     "noImplicitAny": true,
     "module": "esnext",
