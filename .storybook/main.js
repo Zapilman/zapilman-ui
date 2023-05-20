@@ -1,7 +1,7 @@
 module.exports = {
   stories: [
-    '../packages/ui/src/**/*.stories.mdx',
-    '../packages/ui/src/**/*.stories.@(js|jsx|ts|tsx)',
+    '../packages/zdorov-ui/src/**/*.stories.mdx',
+    '../packages/zdorov-ui/src/**/*.stories.@(js|jsx|ts|tsx)',
   ],
   addons: [
     '@storybook/addon-links',

@@ -1,13 +1,9 @@
 **/dist
 node_modules
 **/node_modules
+/storybook-static
 
 mongo-data-4.4
-
-# compiled output
-server/dist
-server/node_modules
-server/uploads
 
 # Logs
 logs
