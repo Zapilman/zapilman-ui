@@ -27,12 +27,21 @@ jobs:
       - name: build webpack
         run: yarn webpack
 
-      - name: 'Setup npm'
-        run: npm set "//npm.pkg.github.com/:_authToken=${{ secrets.NPM_TOKEN }}"
+      - name: Authenticate with Registry
+        run: |
+          yarn logout
+          echo "@zapilman-ui:registry=http://registry.npmjs.org/" > .npmrc
+          echo "registry=http://registry.npmjs.org/" >> .npmrc
+          echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> .npmrc
+          npm whoami
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Puplish Package
         # run: lerna publish --canary --dist-tag alpha prepatch --preid ${{ env.BRANCH_NAME }} --force-publish --yes
         run: npm version patch && npm publish
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: send telegram message
         uses: appleboy/telegram-action@master
