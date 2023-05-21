@@ -4,10 +4,10 @@
   "description": "zapilman ui package",
   "main": "./dist/index.js",
   "scripts": {
-    "pub": "webpack && npm version patch && npm publish",
+    "pub": "webpack && lerna publish --no-private",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "lint": "eslint ./src",
+    "lint": "eslint ./packages",
     "lint:fix": "eslint --fix ./src",
     "typecheck": "npx tsc -p tsconfig.lint.json"
   },
