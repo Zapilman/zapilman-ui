@@ -45,8 +45,8 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Puplish Package
-        # run: lerna publish --canary --dist-tag alpha prepatch --preid ${{ env.BRANCH_NAME }} --force-publish --yes
-        run: npm version patch && npm publish
+        run: lerna publish --canary --dist-tag alpha prepatch --preid ${{ env.BRANCH_NAME }} --force-publish --yes
+        # run: npm version patch && npm publish
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
