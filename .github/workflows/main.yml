@@ -1,0 +1,57 @@
+name: Test
+on: push
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get repository code
+        uses: actions/checkout@v3
+
+      - name: Setup .npmrc file for publish
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16.x'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Install deps
+        run: yarn
+
+      - name: Cache Yarn packages
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/yarn
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - name: build storybook
+        run: yarn build-storybook
+
+      - name: setup key
+        run: |
+          set -eu
+          mkdir "$HOME/.ssh"
+          echo "${{secrets.SSH_KEY}}" > "$HOME/.ssh/free-aws-sshkey.pem"
+          chmod 400 "$HOME/.ssh/free-aws-sshkey.pem"
+          eval $(ssh-agent -s)
+
+      - name: deploy
+        run: |
+          ssh -i $HOME/.ssh/free-aws-sshkey.pem -o StrictHostKeyChecking=no ubuntu@ec2-3-121-186-101.eu-central-1.compute.amazonaws.com "sudo mkdir -p /var/www/storybook"
+          cd storybook-static
+          rsync -e "ssh -i $HOME/.ssh/free-aws-sshkey.pem" --rsync-path="sudo rsync" --archive --compress --delete . ubuntu@ec2-3-121-186-101.eu-central-1.compute.amazonaws.com:/var/www/storybook
+
+      - name: send telegram message
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: |
+            ${{ github.actor }} created commit:
+            Commit message: ${{ github.event.commits[0].message }}
+
+            Repository: ${{ github.repository }}
+
+            Link: www.zdorov-front.com/storybook
+
+            See changes: https://github.com/${{ github.repository }}/commit/${{github.sha}}
