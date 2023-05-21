@@ -1,6 +1,6 @@
 {
   "name": "zapilman-ui",
-  "version": "1.0.3",
+  "version": "1.0.7",
   "description": "zapilman ui package",
   "main": "./dist/index.js",
   "scripts": {
