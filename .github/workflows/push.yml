@@ -45,7 +45,7 @@ jobs:
           yarn logout
           npm install --global lerna
           npm config set registry https://registry.npmjs.org/
-          echo "zdorov-ui:registry=http://registry.npmjs.org/" > .npmrc
+          echo "zapilman-ui:registry=http://registry.npmjs.org/" > .npmrc
           echo "registry=http://registry.npmjs.org/" >> .npmrc
           echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> .npmrc
           npm whoami
