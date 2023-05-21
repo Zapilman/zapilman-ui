@@ -43,7 +43,7 @@ jobs:
       - name: Authenticate with Registry
         run: |
           yarn logout
-          npm install -g npm@latest
+          npm install --global lerna
           npm config set registry https://registry.npmjs.org/
           echo "zdorov-ui:registry=http://registry.npmjs.org/" > .npmrc
           echo "registry=http://registry.npmjs.org/" >> .npmrc
@@ -54,7 +54,7 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Puplish Package
-        run: npx lerna publish --canary --dist-tag alpha prepatch --preid ${{ env.BRANCH_NAME }} --force-publish --yes
+        run: npx lerna publish --preid ${{ env.BRANCH_NAME }} --yes
         # run: npm version patch && npm publish
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
