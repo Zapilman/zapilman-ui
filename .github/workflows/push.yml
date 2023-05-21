@@ -40,9 +40,11 @@ jobs:
         env:
           GITHUB_PAT: ${{ secrets.GITHUB_PAT }}
 
+      - name: Lerna version
+        run: lerna --version
+
       - name: Authenticate with Registry
         run: |
-          echo lerna --version
           yarn logout
           npm install --global lerna
           npm config set registry https://registry.npmjs.org/
@@ -53,6 +55,9 @@ jobs:
         # run: npm config set registry https://registry.npmjs.org/:_authToken=$NPM_TOKEN
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Aasdasd
+        run: npm config set registry http://registry.npmjs.org/zdorov-ui
 
       - name: Puplish Package
         run:
