@@ -35,12 +35,13 @@ jobs:
           GITHUB_PAT: ${{ secrets.GITHUB_PAT }}
 
       - name: Authenticate with Registry
-        run: |
-          yarn logout
-          echo "zapilman-ui:registry=http://registry.npmjs.org/" > .npmrc
-          echo "registry=http://registry.npmjs.org/" >> .npmrc
-          echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> .npmrc
-          npm whoami
+        # run: |
+        #   yarn logout
+        #   echo "zapilman-ui:registry=http://registry.npmjs.org/" > .npmrc
+        #   echo "registry=http://registry.npmjs.org/" >> .npmrc
+        #   echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> .npmrc
+        #   npm whoami
+        run: npm config set registry https://registry.npmjs.org/:_authToken=$NPM_TOKEN
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
