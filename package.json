@@ -14,7 +14,6 @@
   "keywords": [],
   "author": "zapilman",
   "license": "ISC",
-  "private": "true",
   "devDependencies": {
     "@babel/core": "^7.20.12",
     "@storybook/addon-actions": "^6.5.16",
