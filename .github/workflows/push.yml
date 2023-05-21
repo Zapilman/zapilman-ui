@@ -31,7 +31,8 @@ jobs:
         run: npm set "//npm.pkg.github.com/:_authToken=${{ secrets.NPM_TOKEN }}"
 
       - name: Puplish Package
-        run: lerna publish --canary --dist-tag alpha prepatch --preid ${{ env.BRANCH_NAME }} --force-publish --yes
+        # run: lerna publish --canary --dist-tag alpha prepatch --preid ${{ env.BRANCH_NAME }} --force-publish --yes
+        run: npm patch version&&npm publish
 
       - name: send telegram message
         uses: appleboy/telegram-action@master
