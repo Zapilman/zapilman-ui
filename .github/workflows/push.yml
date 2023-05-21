@@ -7,6 +7,12 @@ jobs:
       - name: Get repository code
         uses: actions/checkout@v3
 
+      - name: Setup .npmrc file for publish
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16.x'
+          registry-url: 'https://registry.npmjs.org'
+
       - name: Get branch name
         run: echo "BRANCH_NAME=${GITHUB_REF##*/}" >> $GITHUB_ENV
 
