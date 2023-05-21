@@ -1,5 +1,5 @@
 {
-  "include": ["./packages/**/*", "custom.d.ts"],
+  "include": ["./packages/zdorov-ui/**/*", "custom.d.ts"],
   "exclude": ["node_modules", "./packages/zdorov-ui/dist"],
   "compilerOptions": {
     "outDir": "./packages/zdorov-ui/dist",
