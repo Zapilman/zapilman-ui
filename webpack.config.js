@@ -19,12 +19,32 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.css/,
-        use: ['style-loader', 'css-loader'],
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        loader: require.resolve('babel-loader'),
       },
       {
-        test: /\.(ts|tsx)?$/,
-        use: ['ts-loader'],
+        test: /\.s[ac]ss|css$/i,
+        use: [
+          { loader: 'style-loader' },
+          {
+            loader: 'css-loader',
+            options: {
+              modules: {
+                localIdentName: '[name]__[local]___[hash:base64:5]',
+              },
+            },
+          },
+          { loader: 'sass-loader' },
+        ],
+      },
+      {
+        test: /\.png|svg|jpg|gif$/,
+        use: ['file-loader'],
+      },
+      {
+        test: /\.tsx?$/,
+        use: 'ts-loader',
         exclude: /node_modules/,
       },
     ],
