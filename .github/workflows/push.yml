@@ -56,7 +56,7 @@ jobs:
       - name: Puplish Package
         run: |
           lerna version prepatch --yes
-          lerna publish from-git --yes
+          lerna publish --yes
         # run: npx lerna publish --dist-tag alpha prepatch --preid ${{ env.BRANCH_NAME }} --yes
         # run: npm version patch && npm publish
         env:
