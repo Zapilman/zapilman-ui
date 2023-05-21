@@ -54,7 +54,7 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Puplish Package
-        run: npx lerna publish --preid ${{ env.BRANCH_NAME }} --yes
+        run: npx lerna publish --dist-tag alpha prepatch --preid ${{ env.BRANCH_NAME }} --yes
         # run: npm version patch && npm publish
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
