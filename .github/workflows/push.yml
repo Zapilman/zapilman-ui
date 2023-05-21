@@ -42,6 +42,7 @@ jobs:
 
       - name: Authenticate with Registry
         run: |
+          echo lerna --version
           yarn logout
           npm install --global lerna
           npm config set registry https://registry.npmjs.org/
