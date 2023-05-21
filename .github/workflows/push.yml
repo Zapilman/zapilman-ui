@@ -72,6 +72,6 @@ jobs:
             ${{ github.actor }} created commit:
             Commit message: ${{ github.event.commits[0].message }}
 
-            Reasdasdpository: ${{ github }}
+            Repository: ${{ github }}
 
             See changes: https://github.com/${{ github.repository }}/commit/${{github.sha}}
