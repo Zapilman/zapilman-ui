@@ -49,11 +49,15 @@ jobs:
           echo "registry=http://registry.npmjs.org/" >> .npmrc
           echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> .npmrc
           npm whoami
+        # run: npm config set registry https://registry.npmjs.org/:_authToken=$NPM_TOKEN
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Puplish Package
-        run: npx lerna publish --dist-tag alpha prepatch --preid ${{ env.BRANCH_NAME }} --yes
+        run: |
+          lerna version --yes
+          lerna publish from-git --yes
+        # run: npx lerna publish --dist-tag alpha prepatch --preid ${{ env.BRANCH_NAME }} --yes
         # run: npm version patch && npm publish
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
