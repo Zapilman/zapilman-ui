@@ -37,9 +37,9 @@ jobs:
       - name: Authenticate with Registry
         run: |
           yarn logout
+          echo "zdorov-ui:registry=http://registry.npmjs.org/" > .npmrc
           echo "registry=http://registry.npmjs.org/" >> .npmrc
           echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> .npmrc
-          npm config set registry http://registry.npmjs.org/zdorov-ui/:_authToken=$NPM_TOKEN
           npm whoami
         # run: npm config set registry https://registry.npmjs.org/:_authToken=$NPM_TOKEN
         env:
