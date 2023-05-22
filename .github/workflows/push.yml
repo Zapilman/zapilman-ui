@@ -57,7 +57,7 @@ jobs:
 
       - name: Puplish Package
         run:
-          npx lerna publish --registry https://www.npmjs.com/package/zdorov-ui --dist-tag alpha prepatch --preid ${{ env.BRANCH_NAME }} --force-publish --yes
+          npx lerna publish --registry https://www.npmjs.com/package --dist-tag alpha prepatch --preid ${{ env.BRANCH_NAME }} --force-publish --yes
           # lerna version prepatch --yes
           # lerna publish --yes
         # run: npx lerna publish --dist-tag alpha prepatch --preid ${{ env.BRANCH_NAME }} --yes
