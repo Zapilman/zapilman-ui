@@ -1,79 +1,79 @@
-name: Test
-on: push
-jobs:
-  publish:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Get repository code
-        uses: actions/checkout@v3
+# name: Test
+# on: push
+# jobs:
+#   publish:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Get repository code
+#         uses: actions/checkout@v3
 
-      - name: Setup .npmrc file for publish
-        uses: actions/setup-node@v2
-        with:
-          node-version: '16.x'
-          registry-url: 'https://registry.npmjs.org'
+#       - name: Setup .npmrc file for publish
+#         uses: actions/setup-node@v2
+#         with:
+#           node-version: '16.x'
+#           registry-url: 'https://registry.npmjs.org'
 
-      - name: Get branch name
-        run: echo "BRANCH_NAME=${GITHUB_REF##*/}" >> $GITHUB_ENV
+#       - name: Get branch name
+#         run: echo "BRANCH_NAME=${GITHUB_REF##*/}" >> $GITHUB_ENV
 
-      - name: Привести название к нижнему регистру
-        run: echo "::set-output name=BRANCH_NAME::$(echo ${{ env.BRANCH_NAME }} | tr '[:upper:]' '[:lower:]')"
+#       - name: Привести название к нижнему регистру
+#         run: echo "::set-output name=BRANCH_NAME::$(echo ${{ env.BRANCH_NAME }} | tr '[:upper:]' '[:lower:]')"
 
-      - name: Install deps
-        run: yarn
+#       - name: Install deps
+#         run: yarn
 
-      - name: Cache Yarn packages
-        uses: actions/cache@v3
-        with:
-          path: ~/.cache/yarn
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
+#       - name: Cache Yarn packages
+#         uses: actions/cache@v3
+#         with:
+#           path: ~/.cache/yarn
+#           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+#           restore-keys: |
+#             ${{ runner.os }}-yarn-
 
-      - name: build webpack
-        run: yarn webpack
+#       - name: build webpack
+#         run: yarn webpack
 
-      - name: Configure CI Git User
-        run: |
-          git config --global user.name 'Zapilman'
-          git config --global user.email '17uraz12@gmail.com'
-        env:
-          GITHUB_PAT: ${{ secrets.GITHUB_PAT }}
+#       - name: Configure CI Git User
+#         run: |
+#           git config --global user.name 'Zapilman'
+#           git config --global user.email '17uraz12@gmail.com'
+#         env:
+#           GITHUB_PAT: ${{ secrets.GITHUB_PAT }}
 
-      - name: Authenticate with Registry
-        run: |
-          yarn logout
-          npm install --global lerna
-          echo "zapilman-ui:registry=http://registry.npmjs.org/" > .npmrc
-          echo "registry=http://registry.npmjs.org/" >> .npmrc
-          echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> .npmrc
-          npm whoami
-        # run: npm config set registry https://registry.npmjs.org/:_authToken=$NPM_TOKEN
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+#       - name: Authenticate with Registry
+#         run: |
+#           yarn logout
+#           npm install --global lerna
+#           echo "zapilman-ui:registry=http://registry.npmjs.org/" > .npmrc
+#           echo "registry=http://registry.npmjs.org/" >> .npmrc
+#           echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> .npmrc
+#           npm whoami
+#         # run: npm config set registry https://registry.npmjs.org/:_authToken=$NPM_TOKEN
+#         env:
+#           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: Aasdasd
-        run: yarn config set registry http://registry.npmjs.org/
+#       - name: Aasdasd
+#         run: yarn config set registry http://registry.npmjs.org/
 
-      - name: Puplish Package
-        run:
-          npx lerna publish --dist-tag alpha prepatch --preid ${{ env.BRANCH_NAME }} --force-publish --yes
-          # lerna version prepatch --yes
-          # lerna publish --yes
-        # run: npx lerna publish --dist-tag alpha prepatch --preid ${{ env.BRANCH_NAME }} --yes
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+#       - name: Puplish Package
+#         run:
+#           npx lerna publish --dist-tag alpha prepatch --preid ${{ env.BRANCH_NAME }} --force-publish --yes
+#           # lerna version prepatch --yes
+#           # lerna publish --yes
+#         # run: npx lerna publish --dist-tag alpha prepatch --preid ${{ env.BRANCH_NAME }} --yes
+#         env:
+#           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+#           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: send telegram message
-        uses: appleboy/telegram-action@master
-        with:
-          to: ${{ secrets.TELEGRAM_TO }}
-          token: ${{ secrets.TELEGRAM_TOKEN }}
-          message: |
-            ${{ github.actor }} created commit:
-            Commit message: ${{ github.event.commits[0].message }}
+#       - name: send telegram message
+#         uses: appleboy/telegram-action@master
+#         with:
+#           to: ${{ secrets.TELEGRAM_TO }}
+#           token: ${{ secrets.TELEGRAM_TOKEN }}
+#           message: |
+#             ${{ github.actor }} created commit:
+#             Commit message: ${{ github.event.commits[0].message }}
 
-            Reasdasdpository: ${{ github }}
+#             Reasdasdpository: ${{ github }}
 
-            See changes: https://github.com/${{ github.repository }}/commit/${{github.sha}}
+#             See changes: https://github.com/${{ github.repository }}/commit/${{github.sha}}
