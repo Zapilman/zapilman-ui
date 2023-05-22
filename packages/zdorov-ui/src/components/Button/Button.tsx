@@ -5,7 +5,6 @@ import './Button.css';
 export interface Props {
   title: string;
   children?: ReactNode;
-  theme?: string;
 }
 
 const Button: FC<Props> = ({ title }) => {
