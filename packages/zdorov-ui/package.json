@@ -1,6 +1,6 @@
 {
   "name": "zdorov-ui",
-  "version": "1.0.19-develop.0",
+  "version": "1.0.20-develop.0",
   "description": "zdorov ui package",
   "main": "./dist/index.js",
   "scripts": {
