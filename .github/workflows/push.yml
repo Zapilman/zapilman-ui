@@ -44,7 +44,6 @@ jobs:
         run: |
           yarn logout
           npm install --global lerna
-          yarn config set registry https://registry.npmjs.org/
           echo "zapilman-ui:registry=http://registry.npmjs.org/" > .npmrc
           echo "registry=http://registry.npmjs.org/" >> .npmrc
           echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> .npmrc
@@ -54,7 +53,7 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Aasdasd
-        run: npm config set registry http://registry.npmjs.org/zdorov-ui
+        run: yarn config set registry http://registry.npmjs.org/zdorov-ui
 
       - name: Puplish Package
         run:
