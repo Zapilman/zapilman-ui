@@ -53,7 +53,7 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Aasdasd
-        run: yarn config set registry http://registry.npmjs.org/zdorov-ui
+        run: yarn config set registry http://registry.npmjs.org/
 
       - name: Puplish Package
         run:
