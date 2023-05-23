@@ -6,7 +6,6 @@ export interface Props {
   title: string;
   children?: ReactNode;
 }
-// asdas
 const Button: FC<Props> = ({ title }) => {
   return (
     <div>
