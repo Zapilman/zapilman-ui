@@ -7,11 +7,7 @@ export interface Props {
 }
 
 const Button: FC<Props> = ({ title }) => {
-  return (
-    <div>
-      <button className="buttonWrapper">{title}</button>
-    </div>
-  );
+  return <button className="buttonWrapper">{title}</button>;
 };
 
 export default Button;
