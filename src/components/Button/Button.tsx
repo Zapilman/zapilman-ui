@@ -1,13 +1,22 @@
 import React, { type FC } from 'react';
 
-import './Button.css';
+import cn from 'classnames';
+
+import styles from './Button.module.scss';
 
 export interface Props {
   title: string;
+  fullWidth?: boolean;
 }
 
-const Button: FC<Props> = ({ title }) => {
-  return <button className="buttonWrapper">{title}</button>;
+const Button: FC<Props> = ({ title, fullWidth }) => {
+  return (
+    <button
+      className={cn(styles.buttonWrapper, { [styles.fullWidth]: fullWidth })}
+    >
+      {title}
+    </button>
+  );
 };
 
 export default Button;
